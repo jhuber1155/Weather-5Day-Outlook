@@ -47,8 +47,8 @@ function getCityApi() {
             console.log(currentWeatherIcon)
 
 
-            var currentWeatherAdd = document.createElement("h5")
-            currentWeatherAdd.textContent = currentWeatherIcon
+            var currentWeatherAdd = document.createElement("img")
+            currentWeatherAdd.setAttribute("src", `https://openweathermap.org/img/wn/${currentWeatherIcon}.png`);
 
             currentCityDay.append(currentWeatherAdd);
         })
