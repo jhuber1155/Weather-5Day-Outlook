@@ -70,7 +70,10 @@ function getCityApi() {
 
           var currentDate = list[4].dt_txt
           console.log(currentDate);
-          cityDayOneDate.textContent = currentDate
+          var formatDate = dayjs(currentDate).format("M/DD/YYYY")
+          console.log(formatDate);
+
+           cityDayOneDate.textContent = formatDate
         })  
     });
 };
