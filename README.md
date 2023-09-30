@@ -24,6 +24,8 @@ Enter the name of the city you wish to know the current weather and 5 day forcas
 
 Enter a new city name to learn the weather of another city. Click one of the previous city buttons to learn of the weather of a city you previously searched.
 
+A live deployed link can be found at: https://jhuber1155.github.io/Weather-5Day-Outlook/
+
 ## Credits
 
 UCLA bootcamp Instructors and students.
