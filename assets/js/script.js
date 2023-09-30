@@ -1,4 +1,4 @@
-// var cityName = document.getElementById("cityNameSearch")
+var cityName = document.getElementById("cityNameSearch")
 var currentCityDay = document.getElementById("chosen-city-day")
 var cityDayOneDate = document.getElementById("day-one")
 var cityDayOne = document.getElementById("card-text-one")
@@ -10,13 +10,12 @@ var cityDayFourDate = document.getElementById("day-four")
 var cityDayFour = document.getElementById("card-text-four")
 var cityDayFiveDate = document.getElementById("day-five")
 var cityDayFive = document.getElementById("card-text-five")
+var citySearchButton = document.getElementById("citySearchButton")
 
-
-// var cityName = "Boston"
-// " + cityName + "
 
 function getCityApi() {
-    var submitCityUrl = "http://api.openweathermap.org/geo/1.0/direct?q=Boston&limit=1&appid=9161499c0d3f90ae93e65e2d44573b8e"
+
+    var submitCityUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=9161499c0d3f90ae93e65e2d44573b8e"
     
     fetch(submitCityUrl)
     .then(function (response) {
@@ -188,10 +187,38 @@ function getCityApi() {
             dayFiveHumidityAdd.textContent = (dayFiveHumidity + "%")
             dayFiveWindAdd.appendChild(dayFiveHumidityAdd);
     });
-});
-}
-getCityApi();
+    function previousCities(){
+      var previousCities = JSON.parse(localStorage.getItem("previousCityNames"));
+      if (previousCities !==null){ 
+          cityName = previousCities;
+      };
+      function renderCities() {
+        for (var i = 0; i < previousCities.length; i++) {
+            var cityNames = previousCities[i];
+    
+            var li = document.createElement("li");
+            li.textContent = cityNames;
+            li.setAttribute("data-index", i);
+            cityName.appendChild(li);
+        };
+    };
+      function storeCities(){
+        localStorage.setItem("previousCityNames", JSON.stringify(cityName));
+    };
 
+    };
+});
+};
+
+
+citySearchButton.addEventListener("click", function (event){
+  event.preventDefault();
+  getCityApi(cityName);
+  previousCities();
+  storeCities();
+
+  
+});
 
 // var fiveDayForecast = {
 //     date: "",
@@ -224,4 +251,3 @@ getCityApi();
 //     cityDayThreeDate.appendChild(cityDayThree)
 //     cityDayFourDate.appendChild(cityDayFour)
 //     cityDayFiveDate.appendChild(cityDayFive)
-// }
