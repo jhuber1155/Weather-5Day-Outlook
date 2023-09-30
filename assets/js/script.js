@@ -15,7 +15,7 @@ var citySearchButton = document.getElementById("citySearchButton")
 
 function getCityApi() {
 
-    var submitCityUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=9161499c0d3f90ae93e65e2d44573b8e"
+    var submitCityUrl = "http://api.openweathermap.org/geo/1.0/direct?q=Boston&limit=1&appid=9161499c0d3f90ae93e65e2d44573b8e"
     
     fetch(submitCityUrl)
     .then(function (response) {
@@ -209,16 +209,16 @@ function getCityApi() {
     };
 });
 };
+getCityApi();
 
-
-citySearchButton.addEventListener("click", function (event){
-  event.preventDefault();
-  getCityApi(cityName);
-  previousCities();
-  storeCities();
+// citySearchButton.addEventListener("click", function (event){
+//   event.preventDefault();
+//   getCityApi(cityName);
+//   previousCities();
+//   storeCities();
 
   
-});
+// });
 
 // var fiveDayForecast = {
 //     date: "",
