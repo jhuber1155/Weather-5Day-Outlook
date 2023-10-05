@@ -1,17 +1,8 @@
 var cityName = document.getElementById("cityNameSearch")
 var currentCityDay = document.getElementById("chosen-city-day")
-var cityDayOneDate = document.getElementById("day-one")
-var cityDayOne = document.getElementById("card-text-one")
-var cityDayTwoDate = document.getElementById("day-two")
-var cityDayTwo = document.getElementById("card-text-two")
-var cityDayThreeDate = document.getElementById("day-three")
-var cityDayThree = document.getElementById("card-text-three")
-var cityDayFourDate = document.getElementById("day-four")
-var cityDayFour = document.getElementById("card-text-four")
-var cityDayFiveDate = document.getElementById("day-five")
-var cityDayFive = document.getElementById("card-text-five")
 var citySearchButton = document.getElementById("citySearchButton")
 var forecastEl = document.getElementById("forecast")
+
 
 
 function getCityApi() {
@@ -49,12 +40,21 @@ function getCityApi() {
 
             var currentWeatherDate = document.createElement("h2")
             currentWeatherDate.setAttribute("class", "card-group")
-            var currentCityDate = degdata.dt
+            var currentCityDate = dayjs().format("M/D/YYYY")
             currentWeatherDate.textContent = currentCityDate
             var currentWeatherIcon = document.createElement("img")
             currentWeatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${currentWeather}.png`);
+            var currentWeatherTemp = document.createElement("p")
+            currentWeatherTemp.setAttribute("class", "card-group")
+            currentWeatherTemp.textContent = ("Temp: " + degdata.main.temp + "\xB0 F")
+            var currentWeatherWind = document.createElement("p")
+            currentWeatherWind.setAttribute("class", "card-group")
+            currentWeatherWind.textContent = ("Wind: " + degdata.wind.speed + " MPH")
+            var currentWeatherHumidity = document.createElement("p")
+            currentWeatherHumidity.setAttribute("class", "card-group")
+            currentWeatherHumidity.textContent = ("Humidity: " + degdata.main.humidity + " %")
 
-            currentCityDay.append(currentWeatherDate, currentWeatherIcon);
+            currentCityDay.append(currentWeatherDate, currentWeatherIcon, currentWeatherTemp, currentWeatherWind, currentWeatherHumidity);
         })
 
       var request5DayUrl= "https://api.openweathermap.org/data/2.5/forecast?lat=" + cityLatData + "&lon=" + cityLongData + "&appid=9161499c0d3f90ae93e65e2d44573b8e&units=imperial"
@@ -92,20 +92,20 @@ function getCityApi() {
           cardElement.append(cardBody)
           var cardTitle = document.createElement("h5")
           cardTitle.setAttribute("class", "card-title")
-          cardTitle.textContent = fiveDayForecast.date
+          cardTitle.textContent = dayjs(fiveDayForecast.date).format("M/D/YYYY")
           var cardWeather = document.createElement("img")
           var weatherIcon = data.list[i].weather[0].icon
           cardWeather.setAttribute("src", `https://openweathermap.org/img/wn/${weatherIcon}.png`)
           cardWeather.textContent = fiveDayForecast.icon
           var cardTemp = document.createElement("p")
           cardTemp.setAttribute("class", "card-text")
-          cardTemp.textContent = fiveDayForecast.temp
+          cardTemp.textContent = ("Temp: " + fiveDayForecast.temp + "\xB0 F")
           var cardWind = document.createElement("p")
           cardWind.setAttribute("class", "card-text")
-          cardWind.textContent = fiveDayForecast.wind
+          cardWind.textContent = ("Wind: " + fiveDayForecast.wind + " MPH")
           var cardHumidity = document.createElement("p")
           cardHumidity.setAttribute("class", "card-text")
-          cardHumidity.textContent = fiveDayForecast.humidity
+          cardHumidity.textContent = ("Humidity: " + fiveDayForecast.humidity + " %")
           cardBody.append(cardTitle, cardWeather, cardTemp, cardWind, cardHumidity)
           forecastEl.append(cardElement)
       }
