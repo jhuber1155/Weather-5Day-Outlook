@@ -87,7 +87,7 @@ function getCityApi(cityName) {
           var cardElement = document.createElement("div")
           cardElement.setAttribute("class", "card col-2")
           var cardBody = document.createElement("div")
-          cardBody.setAttribute("class", "card-body")
+          cardBody.setAttribute("class", "card-body p-3 mb-2 bg-dark text-white")
           cardElement.append(cardBody)
           var cardTitle = document.createElement("h5")
           cardTitle.setAttribute("class", "card-title")
@@ -123,7 +123,7 @@ function renderPreviousCities(){
   var newButton = document.createElement("button")
   newButton.textContent = city
   newButton.setAttribute("data-city", city)
-  newButton.setAttribute("class", "history")
+  newButton.setAttribute("class", "history btn btn-primary mb-3 p-2")
   searchedCities.appendChild(newButton)
   }
 

@@ -4,5 +4,12 @@ h1 {
     text-align: center;
     color: white;
     background: linear-gradient(to right, #465ab8 , #261360);
-};
+}
 
+.card-body{
+    margin: 5px;
+}
+
+#chosen-city-day{
+    border-style: solid;
+}
