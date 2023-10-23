@@ -8,7 +8,7 @@ var cities = [];
 
 function getCityApi(cityName) {
 
-    var submitCityUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=9161499c0d3f90ae93e65e2d44573b8e"
+    var submitCityUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=9161499c0d3f90ae93e65e2d44573b8e"
     
     fetch(submitCityUrl)
     .then(function (response) {
@@ -76,6 +76,7 @@ function getCityApi(cityName) {
       };
           console.log(data)
           fiveDayForecast.innerHTML='';
+          forecastEl.innerHTML = '';
         for (var i = 1; i < data.list.length; i += 8){
           fiveDayForecast.date = data.list[i].dt_txt
           fiveDayForecast.icon = data.list[i].weather
